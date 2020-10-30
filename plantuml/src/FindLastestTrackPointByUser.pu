@@ -1,0 +1,19 @@
+@startuml FindGPXByUser
+
+(*) --> "User request by user's ID with optional paging params"
+--> "Server received request"
+--> "Validate Request"
+if "Validate request" then
+-->[true] "Valid request"
+if "find trackpoint by user" then
+-->[found] "Return result"
+--> (*)
+else
+-->[not found] "Response Empty"
+endif
+else
+-->[false] "Response Error"
+endif
+--> (*)
+
+@enduml

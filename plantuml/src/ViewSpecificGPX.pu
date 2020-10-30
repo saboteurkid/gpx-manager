@@ -1,0 +1,13 @@
+@startuml ViewSpecificGPX
+
+(*) --> "User request GPX with GPX'is"
+-right-> "Server received request"
+if "Query DB with ID" then
+-->[found] "Response GPX in XML content type"
+---> (*)
+else
+->[not found] "Response Error"
+endif
+--> (*)
+
+@enduml

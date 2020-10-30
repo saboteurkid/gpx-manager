@@ -1,0 +1,14 @@
+@startuml Upload
+
+(*) --> "User upload GPX"
+-right-> "Server received request"
+if "Validate GPX" then
+-->[true] "Save GPX"
+--> "Reponse newly created GPX's ID"
+---> (*)
+else
+->[false] "Response Error"
+endif
+--> (*)
+
+@enduml

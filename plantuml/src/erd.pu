@@ -1,0 +1,34 @@
+@startuml ERD
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "GPS" as GPS {
+    *id : number <<generated>>
+    --
+    *name : text
+    *user_id: number
+}
+
+entity "WayPoint" as WayPoint {
+    *id : number <<generated>>
+    --
+    *lon: number
+    *lat: number
+}
+
+entity "TrackPoint" as TrackPoint {
+    *id : number <<generated>>
+    --
+    *user_id : number
+    *gps_id: number <<FK>>
+}
+
+' GPS can have 0-m Trackpoints, Trackpoint must belong to a GPX
+GPS ||-- TrackPoint
+TrackPoint }o-- GPS
+' GPS can have 0-m WayPoints and so do WayPoint
+WayPoint }o-- GPS
+GPS }o-- WayPoint
+
+@enduml
